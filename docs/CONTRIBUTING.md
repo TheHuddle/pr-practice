@@ -22,7 +22,7 @@ Fill the description with a short description why it is your favorite language
 I like CLISP because of the parenthesis
 ```
 
-Submit your ticket, then *assign yourself to the ticket*!!
+Submit your ticket! A contributor will assign you to the ticket (since you will be the one to implement it), but feel free to start working on your pull request right away! :)
 
 
 ### 2. Hello World!
