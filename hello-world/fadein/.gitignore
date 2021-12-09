@@ -1,0 +1,3 @@
+*.o
+hello_arm
+hello_x86-64
