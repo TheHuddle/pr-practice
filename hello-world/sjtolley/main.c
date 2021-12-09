@@ -11,8 +11,10 @@
 #define SEMICOLON ;
 #define COMMENT(ignore)
 #define ZERO 0
+#define COMMA ,
 
-int main ( int argc, char * * argv) {
-
+int main OPEN_PAREN int argc COMMA char STAR STAR argv CLOSE_PAREN OPEN_BRACKET
+	char STAR word = "hello, world.";
+	puts(word);
 	return ZERO;
-}
+CLOSE_BRACKET
