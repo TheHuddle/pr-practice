@@ -8,15 +8,13 @@ int main OPEN_PAREN int argc COMMA char STAR STAR argv CLOSE_PAREN OPEN_BRACKET
 
 	initialize_machine();
 
-	set_data_on_register(&regA, 43);
-	set_data_on_register(&regB, 34);
-	add_registers(&regA, &regB);
-	add_value(&regA, 11);
-	store_register(&regA, 0);
-	load_register(&regC, 0);
-	printerrupt(0);
-
-	memory[0] = 0b0001000100000100;
+	memory[0] = 0b0000000000000000;
+	memory[1] = 0b0000000100000001;
+	memory[2] = 0b0000001000000001;
+	memory[3] = 0b0000001100000000;
+	memory[4] = 0b0000000000000000;
+	memory[5] = 0b0000101100100000;
+	memory[6] = 0b0000101101000000;
 	run_program();
 
 	int i = 0;

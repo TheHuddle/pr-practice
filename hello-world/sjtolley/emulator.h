@@ -52,6 +52,7 @@ extern void load_register(uint_fast16_t *reg, uint_fast16_t address);
 	101 RRR AAAAAAAA */
 extern void interrupt();
 extern void printerrupt(uint_fast16_t address);
+extern void printerrupt(uint_fast16_t address);
 /* JMP
 	110 --- AAAAAAAA 
 	Moves program pointer to AAAAAAAA*/

@@ -21,6 +21,7 @@ uint_fast16_t* get_register(uint_fast16_t reg) {
 		case 6:
 			return &regData;
 	}
+	return &regData;
 }
 
 void initialize_machine() {
@@ -54,17 +55,20 @@ void load_register(uint_fast16_t *reg, uint_fast16_t address) {
 void printerrupt(uint_fast16_t address) {
 	uint_fast16_t *p = &memory[address];
 	while (*p != 0) {
-		printf("%c", *p);
+		printf("%c", (int)*p);
 		p++;
 	}
 }
 
+void integerrupt(uint_fast16_t address) {
+	printf("%d\n", (int)memory[address]);
+}
 void jmp(uint_fast16_t address) {
 	regProg = address;
 }
 
 void run_program() {
-//	while (regProg < 256) {
+	while (regProg < 256) {
 		uint_fast16_t command = memory[regProg];
 		uint_fast16_t opcode = command & 0b0011100000000000;
 		opcode = opcode >> 11;
@@ -75,7 +79,7 @@ void run_program() {
 		uint_fast16_t data = command & 0b0000000011111111;
 		switch (opcode) {
 			case 0:
-				printf("OPCODE 0 on (%d) with #%d\n", reg1, data);
+				printf("OPCODE 0 on (%d) with #%d\n", (int)reg1, (int)data);
 				set_data_on_register(get_register(reg1), data);				
 				break;
 			case 1:
@@ -94,6 +98,26 @@ void run_program() {
 				printf("OPCODE 4 : Load");
 				load_register(get_register(reg1), data);
 				break;
+			case 5:
+				printf("OPCODE 5 : Interrupt");
+				switch (regInt) {
+					case 0:
+						printerrupt(regData);
+						break;
+					case 1:
+						integerrupt(regData);
+				}
+				break;
+			case 6:
+				printf("OPCODE 6 : JUMP");
+				jmp(regData);
+				break;
+			case 7:
+				printf("OPCODE 7 : HALT");
+				return;
 		}
-//	}
+		if (opcode != 6) {
+			regProg++;
+		}
+	}
 }
