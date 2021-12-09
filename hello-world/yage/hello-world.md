@@ -1,4 +1,8 @@
-<!-- a cheeky hello-world in the "english" language -->
+<!--
+a cheeky hello-world in the "english" language
+
+... if you've found this, send me a DM that says "I solemnly swear that I am to no good" to score bonus points
+ -->
 ```
  ,          _   _          _                     _         
 /|   |     | | | |        (_|   |   |_/         | |    |  |
