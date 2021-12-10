@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := os.iso
 
 OBJECTS=entry.o kernel.o
-KERNEL_BUILD_FLAGS=-std=c99 -ffreestanding -O2 -Wall -Wextra
+KERNEL_BUILD_FLAGS=-std=c99 -ffreestanding -O0 -Wall -Wextra
 OS_BUILD_FLAGS=-ffreestanding -O2 -nostdlib -lgcc
 
 entry.o: boot.asm 
