@@ -30,7 +30,7 @@ void kernel(void) {
     j = 0;
     while (j < 100000000) { j++; } // Since we don't have an interrupt descriptor table we can't use the PIC; this emulates "sleeping"
     for (i = 0; i < WIDTH*HEIGHT; i++) {
-      vgamem[i] = s[i % 12] | vgacolors[(i+k) % 6] << 8;
+      vgamem[i] = s[i % strlen(s)] | vgacolors[(i+k) % 6] << 8;
     }
   }
 }
