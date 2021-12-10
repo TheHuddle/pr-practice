@@ -116,15 +116,13 @@ void run_program OPEN_PAREN CLOSE_PAREN OPEN_BRACKET
 				CLOSE_BRACKET
 				break SEMICOLON
 			case 6:
-				//printf("OPCODE 6 : JUMP");
-				jmp(data);
-				break;
+				jmp OPEN_PAREN data CLOSE_PAREN SEMICOLON
+				break SEMICOLON
 			case 7:
-				//printf("OPCODE 7 : HALT");
-				return;
-		}
-		if (opcode != 6) {
-			regProg++;
-		}
-	}
-}
+				return SEMICOLON
+		CLOSE_BRACKET
+		if OPEN_PAREN opcode != 6 CLOSE_PAREN OPEN_BRACKET
+			INCREMENT(regProg) SEMICOLON
+		CLOSE_BRACKET
+	CLOSE_BRACKET
+CLOSE_BRACKET
