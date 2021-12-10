@@ -1,116 +1,120 @@
 #include "emulator.h"
 
-uint_fast16_t memory[256];
+uint_fast16_t memory OPEN_SQUARE 256 CLOSE_SQUARE SEMICOLON
 
-uint_fast16_t reg0, regA, regB, regC, regProg, regInt, regData;
+uint_fast16_t reg0 COMMA
+			regA COMMA
+			regB COMMA
+			regC COMMA
+			regProg COMMA
+			regInt COMMA
+			regData SEMICOLON
 
-uint_fast16_t* get_register(uint_fast16_t reg) {
-	switch (reg) {
+uint_fast16_t STAR get_register OPEN_PAREN uint_fast16_t reg CLOSE_PAREN OPEN_BRACKET
+	switch OPEN_PAREN reg CLOSE_PAREN OPEN_BRACKET
 		case 0:
-			return &reg0;
+			return &reg0 SEMICOLON
 		case 1:
-			return &regA;
+			return &regA SEMICOLON
 		case 2:
-			return &regB;
+			return &regB SEMICOLON
 		case 3:
-			return &regC;
+			return &regC SEMICOLON
 		case 4:
-			return &regProg;
+			return &regProg SEMICOLON
 		case 5:
-			return &regInt;
+			return &regInt SEMICOLON
 		case 6:
-			return &regData;
-	}
-	return &regData;
-}
+			return &regData SEMICOLON
+	CLOSE_BRACKET
+	return &regData SEMICOLON
+CLOSE_BRACKET
 
-void initialize_machine() {
-	reg0 = regA = regB = regC = regProg = regInt = regData= 0;
+void initialize_machine OPEN_PAREN CLOSE_PAREN OPEN_BRACKET
+	reg0 = regA = regB = regC = regProg = regInt = regData = ZERO SEMICOLON
 
-	for (int i = 0; i < 256; i++) {
-		memory[i] = 0;
-	}
-}
+	for OPEN_PAREN int i ASSIGN 0 SEMICOLON i < 256 SEMICOLON INCREMENT(i) CLOSE_PAREN OPEN_BRACKET
+		memory OPEN_SQUARE i CLOSE_SQUARE ASSIGN ZERO SEMICOLON
+	CLOSE_BRACKET
+CLOSE_BRACKET
 
-void set_data_on_register(uint_fast16_t *reg, uint_fast16_t data) {
-	*reg = data;
-}
+void set_data_on_register OPEN_PAREN uint_fast16_t STAR reg COMMA uint_fast16_t data CLOSE_PAREN OPEN_BRACKET
+	STAR reg ASSIGN data SEMICOLON
+CLOSE_BRACKET
 
-void add_registers(uint_fast16_t *regA, uint_fast16_t *regB) {
-	*regA += *regB;
-}
+void add_registers OPEN_PAREN uint_fast16_t STAR regA COMMA uint_fast16_t STAR regB CLOSE_PAREN OPEN_BRACKET
+	STAR regA += STAR regB SEMICOLON
+CLOSE_BRACKET
 
-void add_value(uint_fast16_t *reg, uint_fast16_t data) {
-	*reg += data;
-}
+void add_value OPEN_PAREN uint_fast16_t STAR reg COMMA uint_fast16_t data CLOSE_PAREN OPEN_BRACKET
+	STAR reg += data SEMICOLON
+CLOSE_BRACKET
 
-void store_register(uint_fast16_t *reg, uint_fast16_t address) {
-	memory[address] = *reg;
-}
+void store_register OPEN_PAREN uint_fast16_t STAR reg COMMA uint_fast16_t address CLOSE_PAREN OPEN_BRACKET
+	memory OPEN_SQUARE address CLOSE_SQUARE ASSIGN STAR reg SEMICOLON
+CLOSE_BRACKET
 
-void load_register(uint_fast16_t *reg, uint_fast16_t address) {
-	*reg = memory[address];
-}
+void load_register OPEN_PAREN uint_fast16_t STAR reg COMMA uint_fast16_t address CLOSE_PAREN OPEN_BRACKET
+	STAR reg ASSIGN memory OPEN_SQUARE address CLOSE_SQUARE SEMICOLON
+CLOSE_BRACKET
 
-void printerrupt(uint_fast16_t address) {
-	uint_fast16_t *p = &memory[address];
-	while (*p != 0) {
-		printf("%c", (int)*p);
-		p++;
-	}
-}
+void printerrupt OPEN_PAREN uint_fast16_t address CLOSE_PAREN OPEN_BRACKET
+	uint_fast16_t STAR p ASSIGN &memory OPEN_SQUARE address CLOSE_SQUARE SEMICOLON
+	while OPEN_PAREN STAR p != ZERO CLOSE_PAREN OPEN_BRACKET
+		printf OPEN_PAREN "%c" COMMA OPEN_PAREN int CLOSE_PAREN STAR p CLOSE_PAREN SEMICOLON
+		INCREMENT(p) SEMICOLON
+	CLOSE_BRACKET
+CLOSE_BRACKET
 
-void integerrupt(uint_fast16_t address) {
-	printf("%d\n", (int)memory[address]);
-}
-void jmp(uint_fast16_t address) {
-	//printf("Jump to %d\n", (int)address);
-	regProg = address;
-}
+void integerrupt OPEN_PAREN uint_fast16_t address CLOSE_PAREN OPEN_BRACKET
+	printf OPEN_PAREN "%d\n" COMMA OPEN_PAREN int CLOSE_PAREN memory OPEN_SQUARE address CLOSE_SQUARE CLOSE_PAREN SEMICOLON
+CLOSE_BRACKET
 
-void run_program() {
-	while (regProg < 256) {
-		uint_fast16_t command = memory[regProg];
-		uint_fast16_t opcode = command & 0b0011100000000000;
-		opcode = opcode >> 11;
-		//printf("%d @ %d\n", opcode, regProg);
-		uint_fast16_t reg1 = command & 0b0000011100000000;
-		reg1 = reg1 >> 8;
-		uint_fast16_t reg2 = command & 0b0000000011100000;
-		reg2 = reg2 >> 5;
-		uint_fast16_t data = command & 0b0000000011111111;
-		switch (opcode) {
+void jmp OPEN_PAREN uint_fast16_t address CLOSE_PAREN OPEN_BRACKET
+	regProg ASSIGN address SEMICOLON
+CLOSE_BRACKET
+
+void run_program OPEN_PAREN CLOSE_PAREN OPEN_BRACKET
+	while OPEN_PAREN regProg < 256 CLOSE_PAREN OPEN_BRACKET
+		uint_fast16_t command ASSIGN memory OPEN_SQUARE regProg CLOSE_SQUARE SEMICOLON
+
+		uint_fast16_t opcode ASSIGN command & 0b0011100000000000 SEMICOLON
+		opcode ASSIGN opcode >> 11 SEMICOLON
+
+		uint_fast16_t reg1 ASSIGN command & 0b0000011100000000 SEMICOLON
+		reg1 ASSIGN reg1 >> 8 SEMICOLON
+
+		uint_fast16_t reg2 ASSIGN command & 0b0000000011100000 SEMICOLON
+		reg2 ASSIGN reg2 >> 5 SEMICOLON
+
+		uint_fast16_t data ASSIGN command & 0b0000000011111111 SEMICOLON
+
+		switch OPEN_PAREN opcode CLOSE_PAREN OPEN_BRACKET
 			case 0:
-				// printf("OPCODE 0 on (%d) with #%d\n", (int)reg1, (int)data);
-				set_data_on_register(get_register(reg1), data);				
-				break;
+				set_data_on_register OPEN_PAREN get_register OPEN_PAREN reg1 CLOSE_PAREN COMMA data CLOSE_PAREN SEMICOLON				
+				break SEMICOLON
 			case 1:
-				// printf("OPCODE 1");
-				add_registers(get_register(reg1), get_register(reg2));
-				break;
+				add_registers OPEN_PAREN get_register OPEN_PAREN reg1 CLOSE_PAREN COMMA get_register OPEN_PAREN reg2 CLOSE_PAREN CLOSE_PAREN SEMICOLON
+				break SEMICOLON
 			case 2:
-				// printf("OPCODE 2");
-				add_value(get_register(reg1), data);
-				break;
+				add_value OPEN_PAREN get_register OPEN_PAREN reg1 CLOSE_PAREN COMMA data CLOSE_PAREN SEMICOLON
+				break SEMICOLON
 			case 3:
-				// printf("OPCODE 3");
-				store_register(get_register(reg1), data);
-				break;
+				store_register OPEN_PAREN get_register OPEN_PAREN reg1 CLOSE_PAREN COMMA data CLOSE_PAREN SEMICOLON
+				break SEMICOLON
 			case 4:
-				// printf("OPCODE 4 : Load");
-				load_register(get_register(reg1), data);
-				break;
+				load_register OPEN_PAREN get_register OPEN_PAREN reg1 CLOSE_PAREN COMMA data CLOSE_PAREN SEMICOLON
+				break SEMICOLON
 			case 5:
-				// printf("OPCODE 5 : Interrupt");
-				switch (regInt) {
+				switch OPEN_PAREN regInt CLOSE_PAREN OPEN_BRACKET
 					case 0:
-						printerrupt(regData);
-						break;
+						printerrupt OPEN_PAREN regData CLOSE_PAREN SEMICOLON
+						break SEMICOLON
 					case 1:
-						integerrupt(regData);
-						break;
-				}
-				break;
+						integerrupt OPEN_PAREN regData CLOSE_PAREN SEMICOLON
+						break SEMICOLON
+				CLOSE_BRACKET
+				break SEMICOLON
 			case 6:
 				//printf("OPCODE 6 : JUMP");
 				jmp(data);

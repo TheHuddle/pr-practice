@@ -14,52 +14,58 @@
 #define COMMENT(ignore)
 #define ZERO 0
 #define COMMA ,
+#define INCREMENT(X) X++
 
-extern uint_fast16_t memory[256];
-extern uint_fast16_t reg0,
-					regA,
-					regB,
-					regC,
-					regProg,
-					regInt,
-					regData;
+extern uint_fast16_t memory OPEN_SQUARE 256 CLOSE_SQUARE SEMICOLON
+extern uint_fast16_t reg0 COMMA
+					regA COMMA
+					regB COMMA
+					regC COMMA
+					regProg COMMA
+					regInt COMMA
+					regData SEMICOLON
 
-extern void initialize_machine();
-extern uint_fast16_t* get_register(uint_fast16_t reg);
+extern void initialize_machine OPEN_PAREN CLOSE_PAREN SEMICOLON
+extern uint_fast16_t STAR get_register OPEN_PAREN uint_fast16_t reg CLOSE_PAREN SEMICOLON
 
 /* SET
 	000 RRR DDDDDDDD
 	Sets the data in register RRR*/
-extern void set_data_on_register(uint_fast16_t *reg, uint_fast16_t data);
+extern void set_data_on_register OPEN_PAREN uint_fast16_t STAR reg COMMA uint_fast16_t data CLOSE_PAREN SEMICOLON
 
 /* ADD
 	001 AAA BBB -----
 	Adds register BBB into register AAA*/
-extern void add_registers(uint_fast16_t *regA, uint_fast16_t *regB);
+extern void add_registers OPEN_PAREN uint_fast16_t STAR regA COMMA uint_fast16_t STAR regB CLOSE_PAREN SEMICOLON
 
 /* ADDI
 	010 RRR --------
 	Adds a value to register RRR */
-extern void add_value(uint_fast16_t *reg, uint_fast16_t data);
+extern void add_value OPEN_PAREN uint_fast16_t STAR reg COMMA uint_fast16_t data CLOSE_PAREN SEMICOLON
+
 /* STORE Register
 	011 RRR AAAAAAAA
 	Stores the value of a register in address AAAAAAAA */
-extern void store_register(uint_fast16_t *reg, uint_fast16_t address);
+extern void store_register OPEN_PAREN uint_fast16_t STAR reg COMMA uint_fast16_t address CLOSE_PAREN SEMICOLON
+
 /* LOAD Register
 	100 RRR AAAAAAAA */
-extern void load_register(uint_fast16_t *reg, uint_fast16_t address);
+extern void load_register OPEN_PAREN uint_fast16_t STAR reg COMMA uint_fast16_t address CLOSE_PAREN SEMICOLON
+
 /* Call Interrupt 
 	101 RRR AAAAAAAA */
-extern void interrupt();
-extern void printerrupt(uint_fast16_t address);
-extern void printerrupt(uint_fast16_t address);
+extern void interrupt OPEN_PAREN CLOSE_PAREN SEMICOLON
+extern void printerrupt OPEN_PAREN uint_fast16_t address CLOSE_PAREN SEMICOLON
+extern void printerrupt OPEN_PAREN uint_fast16_t address CLOSE_PAREN SEMICOLON
+
 /* JMP
 	110 --- AAAAAAAA 
 	Moves program pointer to AAAAAAAA*/
-extern void jmp(uint_fast16_t address);
+extern void jmp OPEN_PAREN uint_fast16_t address CLOSE_PAREN SEMICOLON
+
 /* HALT
 	111 --- -------- */
 
 
 /* ========================================== */
-extern void run_program();
+extern void run_program OPEN_PAREN CLOSE_PAREN;
