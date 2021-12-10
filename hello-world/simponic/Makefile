@@ -16,7 +16,7 @@ os.bin: kernel.o entry.o
 os.iso: os.bin
 	mkdir -p iso/boot/grub
 	cp os.bin iso/boot/os.bin
-	printf "menuentry 'HelloOS' {\n  multiboot /boot/os.bin\n}" > iso/boot/grub/grub.cfg
+	printf "menuentry 'HelloOS' {\n  multiboot /boot/os.bin\n  set gfxpayload=text\n}" > iso/boot/grub/grub.cfg
 	grub-mkrescue -o os.iso iso
 
 clean:
