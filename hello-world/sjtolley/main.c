@@ -1,11 +1,6 @@
 #include "emulator.h"
 
 int main OPEN_PAREN int argc COMMA char STAR STAR argv CLOSE_PAREN OPEN_BRACKET
-	/*char phrase OPEN_SQUARE CLOSE_SQUARE ASSIGN OPEN_BRACKET 'h' COMMA 'e' COMMA 'l' COMMA 'l' COMMA
-		'o' COMMA ',' COMMA ' ' COMMA 'w' COMMA 'o' COMMA 'r' COMMA 'l' COMMA 'd' COMMA '.' COMMA 0 CLOSE_BRACKET SEMICOLON
-	char STAR word ASSIGN phrase SEMICOLON
-	puts OPEN_PAREN word CLOSE_PAREN SEMICOLON
-	*/
 	initialize_machine();
 
 	// DATA
@@ -62,11 +57,5 @@ int main OPEN_PAREN int argc COMMA char STAR STAR argv CLOSE_PAREN OPEN_BRACKET
 
 	run_program();
 	
-	/*
-	printf("REG A: %d", (int)regA);
-	printf("REG B: %d", (int)regB);
-	printf("REG C: %d", (int)regC);
-	*/
-
-	return ZERO;
+	return ZERO SEMICOLON
 CLOSE_BRACKET
