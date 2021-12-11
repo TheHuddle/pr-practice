@@ -19,5 +19,11 @@ os.iso: os.bin
 	printf "menuentry 'HelloOS' {\n  multiboot /boot/os.bin\n  set gfxpayload=text\n}" > iso/boot/grub/grub.cfg
 	grub-mkrescue -o os.iso iso
 
+demo:
+	qemu-system-i386 demo/os.iso
+
+run: os.iso
+	qemu-system-i386 os.iso
+
 clean:
-	rm -rf iso *.o *.bin
+	rm -rf iso os.iso *.o *.bin
