@@ -1,6 +1,7 @@
 * HelloOS
-This is a simple 32 bit protected mode operating system that runs in VGA mode. It outputs "Hello world" with some cool christmas lights that animate on each frame.
+This is a simple 32 bit protected mode operating system that runs in VGA mode. It outputs "Hello world" with some cool christmas lights.
 
+#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
 [[./demo.gif][Demo]]
 
 ** Building
