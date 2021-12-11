@@ -1,4 +1,5 @@
 .DEFAULT_GOAL := os.iso
+.PHONY: demo
 
 OBJECTS=entry.o kernel.o
 KERNEL_BUILD_FLAGS=-std=c99 -ffreestanding -O0 -Wall -Wextra
