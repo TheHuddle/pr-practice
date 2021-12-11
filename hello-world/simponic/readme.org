@@ -1,0 +1,15 @@
+* HelloOS
+This is a simple 32 bit protected mode operating system that runs in VGA mode. It outputs "Hello world" with some cool christmas lights.
+
+#+ATTR_HTML: :style margin-left: auto; margin-right: auto;
+[[https://s10.gifyu.com/images/demo45e010936937dd16.gif]]
+
+** Building
+In order to build this program you must have the ~i386~ GCC cross-compiled on your system. Instructions can be found on the [[https://wiki.osdev.org/GCC_Cross-Compiler][OSDev Wiki]]. You will also need ~grub~ and ~nasm~.
+
+Then, a simple ~make~ will generate the iso. You can run the iso by ~dd~'ing it to a usb stick or by running it with ~qemu-system-i386~. If you are running on native hardware make sure to boot it with BIOS (some PC's call it Legacy Support).
+
+** Using pre-compiled image
+This project contains a pre-compiled iso file in ~demo~. Simply ~cd demo~ and ~qemu-system-i386 os.iso~ or run ~make demo~.
+
+
