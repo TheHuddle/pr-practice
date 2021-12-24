@@ -1,0 +1,19 @@
+body {
+    text-align: center;
+}
+
+.greeting {
+    animation: wave 1.5s ease-in-out infinite alternate;
+    animation-fill-mode: forwards;
+    transform-origin: bottom;
+    transform-box: fill-box;
+}
+
+@keyframes wave{
+    from{
+        transform: rotateZ(-15deg);
+    }
+    to{
+        transform: rotateZ(15deg);
+    }
+}
