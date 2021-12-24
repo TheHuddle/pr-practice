@@ -10,5 +10,5 @@ character to erase it. This repeats until the program reaches the end of the str
 Run `main.py` with a python3 interpreter.
 Optional arguments are:
 
-* s - The string to print. (default = "Hello, world!")
-* d - The average time between successfully printed characters, in seconds. (default = 0.2 seconds)
+* msg - The string to print. (default = "Hello, world!")
+* delay - The average time between successfully printed characters, in seconds. (default = 0.2 seconds)

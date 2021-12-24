@@ -1,58 +1,58 @@
+#!/usr/bin/env python3
+#Written for python3.9
+
 from random import randint
 import sys, time
 
-#prints a string by:
-# printing a random character
-# checking against the current desired character
-# backspacing if the result was incorrect
-#
-#Arguments:
-# s - the string to be printed (ASCII-only)
-# d - the average delay between correctly printed characters (in seconds)
-def bogoprint(s, delay=0.2):
+def backspace(count=1,out=sys.stdout):
+    out.write('\b' * count)
+    out.flush()
 
- #generator comprehension that returns the numeric value of every character in a string, one at a time
- g = (ord(char) for char in s)
+def bogoprint(msg, delay=0.2):
+    '''Prints a string with a nice random effect:
+    
+    Arguments:
+     msg - the string to be printed (ASCII-only)
+     delay - the average delay between correctly printed characters (in seconds)
+    '''
 
- try:
-  #pre-generate the first character
-  i = next(g)
-  while 1:
+    g = (ord(char) for char in msg)
 
-   #randomly generate and print a valid ASCII character
-   c = randint(32,126)
-   sys.stdout.write(chr(c))
-   sys.stdout.flush()
+    #Calculate the delay per attempt that results in ~1 character per second
+    delay_calc = delay / (126-32 + 1)
 
-   if i == c:
-    #if the printed character was correct, generate the next character in the sequence.
-    i = next(g)
+    try:
+        i = next(g)
+        while True:
 
-   else:
-    #print a backspace to remove the incorrect generated character
-    sys.stdout.write('\b')
-    sys.stdout.flush()
+            #randomly generate and print a valid ASCII character
+            #(the range 32-126 are all single-width printables)
+            c = randint(32,126)
+            sys.stdout.write(chr(c))
+            sys.stdout.flush()
 
-   #add a delay between every step that corresponds to an average of one successful character every 'delay' seconds
-   time.sleep(delay / (126-32 + 1))
+            if i == c:
+                i = next(g)
 
- #when the generator runs out, a 'StopIteration' exception is generated. We use that to terminate the function.
- except StopIteration:
-  sys.stdout.write('\n')
-  sys.stdout.flush()
+            else:
+                backspace()
+
+            time.sleep(delay_calc)
+
+    except StopIteration:
+        sys.stdout.write('\n')
+        sys.stdout.flush()
 
 #function demo for direct execution.
 if __name__ == "__main__":
-
- #pre-define arguments
- s = "Hello, world!"
- delay = 0.2
-
- #unpack provided arguments if they exist
- if len(sys.argv) > 1:
-  s = sys.argv[1]
- if len(sys.argv) > 2:
-  delay = float(sys.argv[2])
-
- #invoke the function
- bogoprint(s, delay)
+    
+    msg = "Hello, world!"
+    delay = 0.2
+    
+    #unpack provided arguments if they exist
+    if len(sys.argv) > 1:
+        msg = sys.argv[1]
+    if len(sys.argv) > 2:
+        delay = float(sys.argv[2])
+    
+    bogoprint(msg, delay)
