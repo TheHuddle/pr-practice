@@ -12,7 +12,7 @@ REMOTE_NAME=$(tr '[:upper:]' '[:lower:]' <<< $GITHUB_USERNAME)
 
 git remote add $REMOTE_NAME git@github.com:$GITHUB_USERNAME/pr-practice.git >/dev/null 2>&1
 git remote set-url --push $REMOTE_NAME DISABLE >/dev/null 2>&1
-git fetch $REMOTE_NAME >/dev/null 2>&1
+git fetch $REMOTE_NAME
 
 
 git remote -v | grep "^$REMOTE_NAME" || echo 'failed to set remote'
