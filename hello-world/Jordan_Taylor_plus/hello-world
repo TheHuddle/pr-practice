@@ -1,0 +1,3 @@
+#!/bin/bash
+MESSAGE='hello world'
+echo "$MESSAGE this is not a lizard"
